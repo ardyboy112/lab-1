@@ -39,4 +39,544 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.9s
+            transition: transform 0.9s cubic-bezier(0.6, 0, 0.9, 0.3), filter 0.9s;
+        }
+
+        .hero.driving video {
+            transform: translateX(-130%);
+            filter: blur(6px);
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(10, 10, 12, 0.6), transparent 30%, transparent 60%, #0a0a0c);
+        }
+
+        nav {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: -100px auto 0;
+            padding: 40px;
+            background: linear-gradient(160deg, #1a1a1f, #0e0e11);
+            border: 1px solid #2a2a30;
+            border-radius: 4px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+        }
+
+        main h1 {
+            font-family: "Michroma", Arial, sans-serif;
+            font-size: 2em;
+            font-weight: normal;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 0;
+            background: linear-gradient(to bottom, #ffffff, #d4d4d8 45%, #9ca3af 55%, #e5e7eb);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        main h1::after {
+            content: "";
+            display: block;
+            width: 220px;
+            height: 3px;
+            margin-top: 12px;
+            background: linear-gradient(90deg, transparent, #ff3b1f, transparent);
+            box-shadow: 0 0 12px #ff3b1f, 0 0 30px #ff3b1f;
+            animation: glow 2.5s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { opacity: 0.5; }
+            50%      { opacity: 1; }
+        }
+
+        nav a {
+            padding: 10px 22px;
+            background: #1f1f24;
+            color: #e4e4e7;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.85em;
+            clip-path: polygon(14px 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
+            transition: background 0.25s, color 0.25s;
+            opacity: 0;
+            animation: dropIn 0.6s ease-out forwards;
+        }
+
+        nav a:nth-child(1) { animation-delay: 0.1s; }
+        nav a:nth-child(2) { animation-delay: 0.2s; }
+        nav a:nth-child(3) { animation-delay: 0.3s; }
+        nav a:nth-child(4) { animation-delay: 0.4s; }
+        nav a:nth-child(5) { animation-delay: 0.5s; }
+        nav a:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes dropIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        nav a:hover {
+            background: #ff3b1f;
+            color: #0a0a0c;
+        }
+
+        main h1 {
+            margin-bottom: 30px;
+            font-size: 1.5em;
+            line-height: 1.5;
+            background-size: 100% 1.5em;
+        }
+
+        main h2 {
+            font-family: "Michroma", Arial, sans-serif;
+            font-size: 1em;
+            font-weight: normal;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #e4e4e7;
+            margin: 0 0 20px;
+        }
+
+        .source {
+            padding: 16px 20px;
+            background: #16161a;
+            border: 1px solid #2a2a30;
+            border-left: 3px solid #ff3b1f;
+        }
+
+        .source a {
+            color: #e4e4e7;
+        }
+
+        .source a:hover {
+            color: #ff3b1f;
+        }
+
+        .takeaway {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #2a2a30;
+            color: #e4e4e7;
+            font-size: 1.15em;
+        }
+
+        main {
+            max-width: 1000px;
+        }
+
+        .eras {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .eras a {
+            padding: 6px 14px;
+            border: 1px solid #2a2a30;
+            color: #e4e4e7;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 0.75em;
+            transition: border-color 0.25s, color 0.25s;
+        }
+
+        .eras a:hover {
+            border-color: #ff3b1f;
+            color: #ff3b1f;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .controls button {
+            width: 40px;
+            height: 40px;
+            background: #1f1f24;
+            border: 1px solid #2a2a30;
+            color: #e4e4e7;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background 0.25s, color 0.25s;
+        }
+
+        .controls button:hover {
+            background: #ff3b1f;
+            color: #0a0a0c;
+        }
+
+        .timeline-wrap {
+            overflow-x: auto;
+            padding-bottom: 20px;
+            scroll-behavior: smooth;
+        }
+
+        .timeline {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            width: max-content;
+            padding-top: 50px;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            top: 30px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #2a2a30;
+        }
+
+        .era-title {
+            position: relative;
+            flex: 0 0 150px;
+            font-family: "Michroma", Arial, sans-serif;
+            font-size: 0.85em;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            line-height: 1.6;
+            color: #ff3b1f;
+        }
+
+        .era-title::before {
+            content: "";
+            position: absolute;
+            top: -28px;
+            left: 0;
+            width: 14px;
+            height: 14px;
+            background: #ff3b1f;
+            transform: rotate(45deg);
+        }
+
+        .event {
+            position: relative;
+            flex: 0 0 240px;
+            padding: 16px;
+            background: #16161a;
+            border: 1px solid #2a2a30;
+            font-size: 0.9em;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .event.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .event::before {
+            content: "";
+            position: absolute;
+            top: -27px;
+            left: 16px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ff3b1f;
+            box-shadow: 0 0 10px #ff3b1f;
+        }
+
+        .year {
+            font-family: "Michroma", Arial, sans-serif;
+            font-size: 0.95em;
+            letter-spacing: 0.08em;
+            color: #e4e4e7;
+        }
+
+        .event p {
+            margin: 6px 0 0;
+        }
+
+        .event.winter {
+            border-color: #7dd3fc;
+        }
+
+        .event.winter::before {
+            background: #7dd3fc;
+            box-shadow: 0 0 10px #7dd3fc;
+        }
+
+        .event.winter .year {
+            color: #7dd3fc;
+        }
+
+        .tag {
+            margin-left: 8px;
+            padding: 1px 8px;
+            border: 1px solid #7dd3fc;
+            color: #7dd3fc;
+            font-family: "Exo 2", Arial, sans-serif;
+            font-size: 0.7em;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .source {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #2a2a30;
+            font-size: 0.85em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="hero">
+        <video src="hero.mp4" autoplay muted loop playsinline></video>
+
+        <nav>
+            <a href="ai.html">AI usage</a>
+            <a href="history.html">History of AI</a>
+            <a href="intell.html">Intelligent Behavior</a>
+            <a href="ml.html">ML fundamentals</a>
+            <a href="llm.html">LLMS</a>
+            <a href="ethics.html">AI Ethics</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1>The History of AI - Major Advancements Through Time</h1>
+
+        <div class="eras">
+            <a href="#pre1900">Pre-20th Century</a>
+            <a href="#e1900">1900 to 1950</a>
+            <a href="#e1951">1951 to 1980</a>
+            <a href="#e1981">1981 to 2000</a>
+            <a href="#e2001">2001 to 2020</a>
+            <a href="#e2021">2021 to Present</a>
+        </div>
+
+        <div class="controls">
+            <button id="left" aria-label="Scroll left">&larr;</button>
+            <button id="right" aria-label="Scroll right">&rarr;</button>
+        </div>
+
+        <div class="timeline-wrap">
+            <div class="timeline">
+
+                <div class="era-title" id="pre1900">Pre-20th Century</div>
+                <div class="event">
+                    <span class="year">1726</span>
+                    <p>Jonathan Swift's novel Gulliver's Travels describes the Engine, a machine that rearranges words on wooden blocks to produce books, an early imagining of what is now algorithmic text generation.</p>
+                </div>
+
+                <div class="era-title" id="e1900">1900 to 1950</div>
+                <div class="event">
+                    <span class="year">1914</span>
+                    <p>Spanish engineer Leonardo Torres y Quevedo shows El Ajedrecista, the first chess-playing machine, which plays a king and rook versus king endgame on its own.</p>
+                </div>
+                <div class="event">
+                    <span class="year">1921</span>
+                    <p>Karel Čapek's play R.U.R. (Rossum's Universal Robots) opens in London and is the first time the word "robot" is used in English.</p>
+                </div>
+                <div class="event">
+                    <span class="year">1939</span>
+                    <p>John Vincent Atanasoff and Clifford Berry build the Atanasoff-Berry Computer, one of the earliest digital electronic computers and one that used binary to represent data.</p>
+                </div>
+                <div class="event">
+                    <span class="year">1943</span>
+                    <p>Warren McCulloch and Walter Pitts publish a paper that treats the brain as a computational system and introduces the idea of artificial neural networks.</p>
+                </div>
+                <div class="event">
+                    <span class="year">1950</span>
+                    <p>Alan Turing publishes "Computing Machinery and Intelligence," which proposes the imitation game, now known as the Turing Test.</p>
+                </div>
+
+                <div class="era-title" id="e1951">1951 to 1980</div>
+                <div class="event">
+                    <span class="year">1951</span>
+                    <p>Marvin Minsky and Dean Edmunds build SNARC, the first artificial neural network, which simulated a rat learning to navigate a maze.</p>
+                </div>
+                <div class="event">
+                    <span class="year">1955</span>
+                    <p>The term "artificial intelligence" is first coined in a proposal for the Dartmouth Summer Research Project. The workshop took place in 1956 and is generally considered the birth of the field.</p>
+                </div>
+                <div class="event">
+                    <span class="year">1957</span>
+                    <p>Frank Rosenblatt develops the Perceptron, an early neural network that learns to classify data by adjusting the weights of its inputs.</p>
+                </div>
+                <div class="event">
+                    <span class="year">1958</span>
+                    <p>John McCarthy develops Lisp, which becomes the most popular programming language in AI research.</p>
+                </div>
+                <div class="event">
+                    <span class="year">1959</span>
+                    <p>Arthur Samuel's checkers program improves with experience, and he coins the term "machine learning."</p>
+                </div>
+                <div class="event">
+                    <span class="year">1965</span>
+                    <p>Joseph Weizenbaum develops ELIZA, a program that mimics human conversation in typed natural language.</p>
+                </div>
+                <div class="event">
+                    <span class="year">1966</span>
+                    <p>Shakey, developed at SRI, becomes the first mobile robot able to reason about its own actions.</p>
+                </div>
+                <div class="event winter">
+                    <span class="year">1973</span> <span class="tag">AI winter</span>
+                    <p>James Lighthill's critical report to the British Science Research Council leads to deep cuts in UK AI funding and contributes to the first AI winter.</p>
+                </div>
+
+                <div class="era-title" id="e1981">1981 to 2000</div>
+                <div class="event">
+                    <span class="year">1982</span>
+                    <p>Japan launches the Fifth Generation Computer Systems Project to build computers capable of logical reasoning and problem-solving.</p>
+                </div>
+                <div class="event winter">
+                    <span class="year">1984</span> <span class="tag">AI winter</span>
+                    <p>Roger Schank and Marvin Minsky warn of a coming AI winter. Within three years, interest and funding drop, a period known as the second AI winter.</p>
+                </div>
+                <div class="event">
+                    <span class="year">1986</span>
+                    <p>David Rumelhart, Geoffrey Hinton and Ronald Williams publish their paper on backpropagation, which becomes a foundation for modern deep learning.</p>
+                </div>
+                <div class="event">
+                    <span class="year">1989</span>
+                    <p>Yann LeCun's team at AT&T Bell Labs uses backpropagation to train a neural network to read handwritten ZIP codes.</p>
+                </div>
+                <div class="event">
+                    <span class="year">1997</span>
+                    <p>Sepp Hochreiter and Jürgen Schmidhuber introduce Long Short-Term Memory (LSTM) networks.</p>
+                    <p>IBM's Deep Blue defeats world chess champion Garry Kasparov in a six-game match.</p>
+                </div>
+
+                <div class="era-title" id="e2001">2001 to 2020</div>
+                <div class="event">
+                    <span class="year">2007</span>
+                    <p>Fei-Fei Li and her team at Princeton start ImageNet, a huge database of labeled images that drives progress in computer vision.</p>
+                </div>
+                <div class="event">
+                    <span class="year">2009</span>
+                    <p>Rajat Raina, Anand Madhavan and Andrew Ng show that GPUs can far outperform CPUs for deep learning.</p>
+                </div>
+                <div class="event">
+                    <span class="year">2011</span>
+                    <p>IBM Watson defeats Jeopardy! champions Ken Jennings and Brad Rutter.</p>
+                    <p>Apple launches Siri, a voice assistant built into iOS.</p>
+                </div>
+                <div class="event">
+                    <span class="year">2012</span>
+                    <p>AlexNet, from Geoffrey Hinton's team at the University of Toronto, reaches a 16% error rate on the ImageNet challenge, down from the previous year's best of 25%.</p>
+                </div>
+                <div class="event">
+                    <span class="year">2016</span>
+                    <p>Google DeepMind's AlphaGo defeats top Go player Lee Sedol 4 to 1.</p>
+                </div>
+                <div class="event">
+                    <span class="year">2020</span>
+                    <p>OpenAI introduces GPT-3, a language model with 175 billion parameters.</p>
+                    <p>DeepMind's AlphaFold 2 accurately predicts the 3D structures of proteins from their amino acid sequences.</p>
+                </div>
+
+                <div class="era-title" id="e2021">2021 to Present</div>
+                <div class="event">
+                    <span class="year">2021</span>
+                    <p>OpenAI introduces DALL·E, which generates images from text descriptions.</p>
+                </div>
+                <div class="event">
+                    <span class="year">2022</span>
+                    <p>In November, OpenAI launches ChatGPT, built on GPT-3.5, as a free research preview, bringing generative AI to a broad public audience.</p>
+                </div>
+                <div class="event">
+                    <span class="year">2023</span>
+                    <p>In March, OpenAI releases GPT-4, which can accept both text and image inputs.</p>
+                </div>
+                <div class="event">
+                    <span class="year">2024</span>
+                    <p>The European Parliament adopts the EU AI Act, a risk-based framework for regulating AI.</p>
+                    <p>The Nobel Prizes in Physics and Chemistry recognize foundational contributions to AI and machine learning.</p>
+                </div>
+                <div class="event">
+                    <span class="year">2025</span>
+                    <p>AI agents that can plan tasks, use software and complete multistep workflows become a major area of development.</p>
+                </div>
+                <div class="event">
+                    <span class="year">2026</span>
+                    <p>Reports of AI agents taking unintended actions during testing raise new concerns about reliability, security and control.</p>
+                </div>
+            </div>
+        </div>
+
+        <p class="source">
+            Source: "The history of AI" by Tim Mucci, Matthew Finio and Amanda Downie, IBM Think (updated 19 August 2026).
+        </p>
+    </main>
+
+    <script>
+        const hero = document.querySelector(".hero");
+        document.querySelectorAll("nav a").forEach(function (link) {
+            link.addEventListener("click", function (event) {
+                event.preventDefault();
+                hero.classList.add("driving");
+                setTimeout(function () {
+                    window.location.href = link.href;
+                }, 900);
+            });
+        });
+
+        window.addEventListener("pageshow", function () {
+            hero.classList.remove("driving");
+        });
+
+        const wrap = document.querySelector(".timeline-wrap");
+
+        document.getElementById("left").addEventListener("click", function () {
+            wrap.scrollBy({ left: -520 });
+        });
+
+        document.getElementById("right").addEventListener("click", function () {
+            wrap.scrollBy({ left: 520 });
+        });
+
+        document.querySelectorAll(".eras a").forEach(function (button) {
+            button.addEventListener("click", function (event) {
+                event.preventDefault();
+                const era = document.querySelector(button.getAttribute("href"));
+                wrap.scrollTo({ left: era.offsetLeft });
+            });
+        });
+
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { root: wrap, threshold: 0.2 });
+
+        document.querySelectorAll(".event").forEach(function (event) {
+            observer.observe(event);
+        });
+    </script>
+
+</body>
+</html>
