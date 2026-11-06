@@ -1,10 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intelligent Behavior - How Do We Model It?</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Exo+2:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        html {
+            background: #0a0a0c;
+            background-attachment: fixed;
+            min-height: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding-bottom: 60px;
+            color: #a1a1aa;
+            font-family: "Exo 2", Arial, sans-serif;
+            font-weight: 400;
+            font-size: 1.1em;
+            line-height: 1.7;
+        }
+
+        .hero {
+            position: relative;
+            height: 45vh;
+            overflow: hidden;
+        }
+
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.9s cubic-bezier(0.6, 0, 0.9, 0.3), filter 0.9s;
+        }
+
+        .hero.driving video {
+            transform: translateX(-130%);
+            filter: blur(6px);
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(10, 10, 12, 0.6), transparent 30%, transparent 60%, #0a0a0c);
+        }
+
+        nav {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: -100px auto 0;
+            padding: 40px;
+            background: linear-gradient(160deg, #1a1a1f, #0e0e11);
+            border: 1px solid #2a2a30;
+            border-radius: 4px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+        }
+
+        main h1 {
+            font-family: "Michroma", Arial, sans-serif;
+            font-size: 2em;
+            font-weight: normal;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 0;
+            background: linear-gradient(to bottom, #ffffff, #d4d4d8 45%, #9ca3af 55%, #e5e7eb);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        main h1::after {
+            content: "";
+            display: block;
+            width: 220px;
+            height: 3px;
+            margin-top: 12px;
+            background: linear-gradient(90deg, transparent, #ff3b1f, transparent);
+            box-shadow: 0 0 12px #ff3b1f, 0 0 30px #ff3b1f;
+            animation: glow 2.5s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { opacity: 0.5; }
+            50%      { opacity: 1; }
+        }
+
+        nav a {
+            padding: 10px 22px;
+            background: #1f1f24;
+            color: #e4e4e7;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.85em;
+            clip-path: polygon(14px 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
+            transition: background 0.25s, color 0.25s;
+            opacity: 0;
+            animation: dropIn 0.6s ease-out forwards;
+        }
+
+        nav a:nth-child(1) { animation-delay: 0.1s; }
+        nav a:nth-child(2) { animation-delay: 0.2s; }
+        nav a:nth-child(3) { animation-delay: 0.3s; }
+        nav a:nth-child(4) { animation-delay: 0.4s; }
+        nav a:nth-child(5) { animation-delay: 0.5s; }
+        nav a:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes dropIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        nav a:hover {
+            background: #ff3b1f;
+            color: #0a0a0c;
+        }
+
+        main h1 {
+            margin-bottom: 30px;
+            font-size: 1.5em;
+            line-height: 1.5;
+            background-size: 100% 1.5em;
+        }
+
+        main h2 {
+            font-family: "Michroma", Arial, sans-serif;
+            font-size: 1em;
+            font-weight: normal;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #e4e4e7;
+            margin: 0 0 20px;
+        }
+
+        .source {
+            padding: 16px 20px;
+            background: #16161a;
+            border: 1px solid #2a2a30;
+            border-left: 3px solid #ff3b1f;
+        }
+
+        .source a {
+            color: #e4e4e7;
+        }
+
+        .source a:hover {
+            color: #ff3b1f;
+        }
+
+        .takeaway {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #2a2a30;
+            color: #e4e4e7;
+            font-size: 1.15em;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Intelligent Behavior - How Do We Model It?</h1>
+
+    <header class="hero">
+        <video src="hero.mp4" autoplay muted loop playsinline></video>
+
+        <nav>
+            <a href="ai.html">AI usage</a>
+            <a href="history.html">History of AI</a>
+            <a href="intell.html">Intelligent Behavior</a>
+            <a href="ml.html">ML fundamentals</a>
+            <a href="llm.html">LLMS</a>
+            <a href="ethics.html">AI Ethics</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Intelligent Behavior - How Do We Model It?</h1>
+    </main>
+
+    <script>
+        const hero = document.querySelector(".hero");
+        document.querySelectorAll("nav a").forEach(function (link) {
+            link.addEventListener("click", function (event) {
+                event.preventDefault();
+                hero.classList.add("driving");
+                setTimeout(function () {
+                    window.location.href = link.href;
+                }, 900);
+            });
+        });
+
+        window.addEventListener("pageshow", function () {
+            hero.classList.remove("driving");
+        });
+    </script>
+
 </body>
 </html>
